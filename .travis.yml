@@ -1,0 +1,15 @@
+# tell travis that it requires superuser permission
+language: generic
+sudo: required
+services:
+  - docker
+
+# list of things that need to be done before tests are ran
+before_install:
+  - docker build -t silveringfox/testing -f Dockerfile.dev .
+
+# what to be ran
+# travis run this and if output of the command returns a status code not 0
+# travis returns build is broken
+script:
+  - docker run -e CI=true silveringfox/testing npm run test
