@@ -10,6 +10,6 @@ before_install:
 
 # what to be ran
 # travis run this and if output of the command returns a status code not 0
-# travis returns build is broken
+# travis returns build is broken 
 script:
   - docker run -e CI=true silveringfox/testing npm run test
