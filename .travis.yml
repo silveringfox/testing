@@ -27,7 +27,7 @@ deploy:
   # use app name
   bucket_path: "testing"
   on:
-    branch: master
+    branch: main
   # define these in travis-ci UI environment variables
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
