@@ -13,3 +13,22 @@ before_install:
 # travis returns build is broken 
 script:
   - docker run -e CI=true silveringfox/testing npm run test
+
+# travis CI preconfigured some hosting providers
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  # name of the web app on elasticbeanstalk (one that we entered)
+  app: "testing"
+  # environment name on elasticbeanstalk
+  env: "Testing-env"
+  # go to S3 service to find the bucket name
+  bucket_name: "elasticbeanstalk-eu-west-1-256940663648"
+  # use app name
+  bucket_path: "testing"
+  on:
+    branch: master
+  # define these in travis-ci UI environment variables
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
